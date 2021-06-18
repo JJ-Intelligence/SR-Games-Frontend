@@ -2,8 +2,8 @@ version: '3.7'
 
 services:
 
-  sample:
-    container_name: sample
+  sr-games-dev:
+    container_name: sr-games-dev
     build:
       context: ""
       dockerfile: Dockerfile
