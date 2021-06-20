@@ -1,20 +1,17 @@
-# pull official base image
-FROM node:13.12.0-alpine
-
-# set working directory
+# build environment
+FROM node:14.17.1-alpine as build
+RUN mkdir /sr-games
 WORKDIR /sr-games
-
-# add `/app/node_modules/.bin` to $PATH
 ENV PATH /sr-games/node_modules/.bin:$PATH
-
-# install app dependencies
 COPY package.json ./
 COPY package-lock.json ./
-RUN npm install --silent
-RUN npm install react-scripts@3.4.1 -g --silent
-
-# add app
+RUN npm install
 COPY . ./
+RUN npm run build
 
-# start app
-CMD ["npm", "start"]
+# production environment
+FROM nginx:stable-alpine
+WORKDIR /sr-games
+COPY --from=build /sr-games/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

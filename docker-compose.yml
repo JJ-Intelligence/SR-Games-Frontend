@@ -2,15 +2,10 @@ version: '3.7'
 
 services:
 
-  sr-games-dev:
-    container_name: sr-games-dev
+  sr-games-prod:
+    container_name: sr-games-prod
     build:
-      context: ""
+      context: .
       dockerfile: Dockerfile
-    volumes:
-      - '.:/sr-games'
-      - '/sr-games/node_modules'
     ports:
-      - 3000:3000
-    environment:
-      - CHOKIDAR_USEPOLLING=true
+      - '80:80'
