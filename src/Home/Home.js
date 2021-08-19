@@ -9,15 +9,18 @@ class Home extends React.Component {
         super(props);
         // this.websocket = new Websocket();
         this.state = { redirect: null };
+
+        this.joinLobby = this.joinLobby.bind(this);
     }
 
     joinLobby(){
         // Get the lobby ID
         console.log("creating lobby")
         // this.websocket.setupSocket();
-        createLobby(e => {
+        let lobbyId = createLobby(e => {
             this.setState({ redirect: "/lobby/" + e});
-        })
+        });
+        console.log(lobbyId);
     }
 
     render() {
