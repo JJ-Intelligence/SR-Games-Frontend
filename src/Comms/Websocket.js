@@ -9,6 +9,7 @@ export class WebsocketHandler{
         let sendMessage = this.sendMessage;
         this.socket.addEventListener('open', function (event) {
             sendMessage({type: "Connect", code:lobbyCode});
+            sendMessage({type: "Anything", Code: lobbyCode});
         });
     }
 
