@@ -4,7 +4,7 @@ class Websocket{
 
     }
     setupSocket() {
-        this.socket = new WebSocket('ws://34.65.135.40:8080/');
+        this.socket = new WebSocket('ws://sr-games-backend.herokuapp.com/');
     }
 
 }
@@ -12,7 +12,7 @@ class Websocket{
 
 
 export function createLobby(callback) {
-    fetch("http://34.65.135.40:8080/createLobby")
+    fetch("https://sr-games-backend.herokuapp.com/createLobby")
         .then(e => e.text())
         .then(callback);
 }
