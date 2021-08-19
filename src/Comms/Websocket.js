@@ -12,7 +12,7 @@ class Websocket{
 
 
 export function createLobby(callback) {
-    fetch("https://sr-games-backend.herokuapp.com/createLobby")
+    fetch("https://sr-games.herokuapp.com/https://sr-games-backend.herokuapp.com/createLobby")
         .then(e => e.text())
         .then(callback);
 }
