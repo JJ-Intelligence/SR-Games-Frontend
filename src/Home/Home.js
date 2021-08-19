@@ -17,10 +17,10 @@ class Home extends React.Component {
         // Get the lobby ID
         console.log("creating lobby")
         // this.websocket.setupSocket();
-        let lobbyId = createLobby(e => {
-            this.setState({ redirect: "/lobby/" + e});
+        createLobby(lobby => {
+            this.setState({ redirect: "/lobby/" + lobby});
+            console.log(lobby);
         });
-        console.log(lobbyId);
     }
 
     render() {
