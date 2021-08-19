@@ -8,21 +8,33 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.websocket = new WebsocketHandler();
-        this.state = { redirect: null };
+        this.state = { redirect: null, lobby: null };
 
         this.joinLobby = this.joinLobby.bind(this);
+        this.createLobby = this.createLobby.bind(this);
+        this.setLobby = this.setLobby.bind(this);
     }
 
     joinLobby(){
-        // Get the lobby ID
+        let lobby = this.state.lobby;
+        console.log("Joining lobby", lobby);
+        this.setState({ redirect: "/lobby/" + lobby});
+        console.log("Lobby ID =",lobby);
+        this.websocket.setupSocket(lobby);
+        console.log("Websocket connection successful");
+        this.websocket.sendMessage({type: "Anything", Code: lobby});
+    }
+
+    createLobby(){
         console.log("creating lobby")
         createLobby(lobby => {
-            this.setState({ redirect: "/lobby/" + lobby});
-            console.log("Lobby ID =",lobby);
-            this.websocket.setupSocket(lobby);
-            console.log("Websocket connection successful");
-            this.websocket.sendMessage({type: "Anything", Code: lobby});
+            this.setLobby(lobby)
+            this.joinLobby()
         });
+    }
+
+    setLobby(id) {
+        this.setState({lobby:id})
     }
 
     render() {
@@ -36,13 +48,13 @@ class Home extends React.Component {
                 <div>
                     <Button
                         style={{fontWeight: "bold", fontFamily: "Monda"}}
-                        onClick={this.joinLobby}
+                        onClick={this.createLobby}
                     >
                         Create Lobby
                     </Button>
                 </div>
                 <div>
-                    <TextField id="standard-basic" label="Lobby ID" />
+                    <TextField id="standard-basic" label="Lobby ID" onChange= {e=>this.setLobby(e.target.value) } />
                     <Button
                         style={{fontWeight: "bold", fontFamily: "Monda"}}
                         onClick={this.joinLobby}
