@@ -1,10 +1,10 @@
 
-class Websocket{
+export class WebsocketHandler{
     constructor() {
 
     }
     setupSocket() {
-        this.socket = new WebSocket('ws://sr-games-backend.herokuapp.com/');
+        this.socket = new WebSocket('wss://sr-games-backend.herokuapp.com/');
     }
 
 }

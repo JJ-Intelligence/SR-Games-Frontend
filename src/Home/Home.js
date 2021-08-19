@@ -1,13 +1,13 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import {Button, TextField} from "@material-ui/core";
-import {createLobby} from "../Comms/Websocket";
+import {createLobby, WebsocketHandler} from "../Comms/Websocket";
 
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        // this.websocket = new Websocket();
+        this.websocket = new WebsocketHandler();
         this.state = { redirect: null };
 
         this.joinLobby = this.joinLobby.bind(this);
@@ -16,7 +16,7 @@ class Home extends React.Component {
     joinLobby(){
         // Get the lobby ID
         console.log("creating lobby")
-        // this.websocket.setupSocket();
+        this.websocket.setupSocket();
         createLobby(lobby => {
             this.setState({ redirect: "/lobby/" + lobby});
             console.log(lobby);
