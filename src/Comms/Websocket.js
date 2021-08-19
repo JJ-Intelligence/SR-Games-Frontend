@@ -15,6 +15,8 @@ export function createLobby(callback) {
     fetch(
         "https://sr-games-backend.herokuapp.com/createLobby",
         {mode: 'no-cors'})
-        .then(e => e.text())
-        .then(lobby => callback(lobby));
+        .then(response => response.text())
+        .then((response) => {
+            callback(response)
+        })
 }
