@@ -16,10 +16,12 @@ class Home extends React.Component {
     joinLobby(){
         // Get the lobby ID
         console.log("creating lobby")
-        this.websocket.setupSocket();
         createLobby(lobby => {
             this.setState({ redirect: "/lobby/" + lobby});
-            console.log(lobby);
+            console.log("Lobby ID =",lobby);
+            this.websocket.setupSocket(lobby);
+            console.log("Websocket connection successful");
+            this.websocket.sendMessage({type: "Anything", Code: lobby});
         });
     }
 

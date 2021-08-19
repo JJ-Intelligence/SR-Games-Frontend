@@ -3,10 +3,15 @@ export class WebsocketHandler{
     constructor() {
 
     }
-    setupSocket() {
+    setupSocket(lobbyCode) {
         this.socket = new WebSocket('wss://sr-games-backend.herokuapp.com/');
+        this.socket.onmessage = event => {console.log(event.data)}
+        this.sendMessage({type: "Connect", code:lobbyCode});
     }
 
+    sendMessage(message) {
+        this.socket.send(JSON.stringify(message))
+    }
 }
 
 
