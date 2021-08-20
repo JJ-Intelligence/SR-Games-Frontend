@@ -1,7 +1,8 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import {Button, TextField} from "@material-ui/core";
-import {createLobby, WebsocketHandler} from "../Comms/Websocket";
+import {WebsocketHandler} from "../Comms/Websocket";
+import {createLobby} from "../Comms/Requests";
 
 
 class Home extends React.Component {

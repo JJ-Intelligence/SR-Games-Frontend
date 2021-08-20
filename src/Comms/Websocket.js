@@ -1,5 +1,5 @@
 
-export class WebsocketHandler{
+export class WebsocketHandler {
     constructor() {
         this.sendMessage = this.sendMessage.bind(this);
     }
@@ -16,15 +16,4 @@ export class WebsocketHandler{
     sendMessage(message) {
         this.socket.send(JSON.stringify(message))
     }
-}
-
-
-
-export function createLobby(callback) {
-    fetch(
-        "https://sr-games-backend.herokuapp.com/createLobby")
-        .then(response => response.text())
-        .then((response) => {
-            callback(response)
-        })
 }
