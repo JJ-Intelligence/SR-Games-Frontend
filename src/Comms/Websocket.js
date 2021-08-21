@@ -22,10 +22,6 @@ export class WebsocketHandler {
         });
     }
 
-    joinLobby() {
-
-    }
-
     sendMessage(message) {
         this.socket.send(JSON.stringify(message))
     }
