@@ -24,7 +24,7 @@ class Lobby extends React.Component {
         let lobby = this.state.lobby;
         console.log("Joining lobby", lobby);
 
-        this.websocket.setupSocket(lobby);
+        this.websocket.setupSocket(lobby, this.state.playerID);
         console.log("Websocket connection successful");
     }
 
@@ -32,7 +32,7 @@ class Lobby extends React.Component {
         let lobby = this.state.lobby;
         console.log("Joining lobby", lobby);
 
-        this.websocket.setupSocket(lobby);
+        this.websocket.setupSocket(lobby, this.state.playerID);
         console.log("Websocket connection successful");
     }
 

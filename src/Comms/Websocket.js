@@ -5,11 +5,15 @@ export class WebsocketHandler {
         this.listeners = {};
     }
 
-    setupSocket(lobbyCode) {
+    setupSocket(lobbyID, playerID) {
         this.socket = new WebSocket('wss://sr-games-backend.herokuapp.com/');
         this.socket.onmessage = event => {console.log(event.data)}
         let sendMessage = this.sendMessage;
-        this.socket.onopen = () => sendMessage({type: "LobbyJoinRequest", code:lobbyCode});
+        this.socket.onopen = () => sendMessage({
+            type: "LobbyJoinRequest", 
+            playerID: playerID,
+            lobbyID: lobbyID,
+        });
 
         this.socket.addEventListener('message', function (event) {
             event.json().then(message => {

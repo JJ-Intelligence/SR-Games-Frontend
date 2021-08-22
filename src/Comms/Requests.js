@@ -1,7 +1,7 @@
 
-export function createLobbyRequest(callback) {
+export function createLobbyRequest(playerID, callback) {
     fetch(
-        "https://sr-games-backend.herokuapp.com/createLobby")
+        `https://sr-games-backend.herokuapp.com/createLobby?playerID=${playerID}`)
         .then(response => response.text())
         .then((response) => {
             callback(response)

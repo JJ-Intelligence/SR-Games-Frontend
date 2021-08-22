@@ -14,6 +14,7 @@ export default class App extends React.Component {
         super(props);
 
         createPlayerRequest(playerID => {
+          console.log("Player ", playerID)
           this.setState({playerID})
         });
 
@@ -28,6 +29,7 @@ export default class App extends React.Component {
                 <Route path="/lobby/*">
                   <Lobby
                       isHost={this.state.isHost}
+                      playerID={this.state.playerID}
                   />
                 </Route>
                 <Route path="/">
@@ -35,6 +37,7 @@ export default class App extends React.Component {
                       setHost={isHost => {
                         this.setState({isHost})
                       }}
+                      playerID={this.state.playerID}
                   />
                 </Route>
               </Switch>
