@@ -18,7 +18,7 @@ export class WebsocketHandler {
         );
 
         this.socket.addEventListener('message', event => {
-            message = event.data
+            let message = event.data
             this.listeners[message.type](message);
             console.log('Message from server ', message);
         });
