@@ -11,16 +11,19 @@ export class WebsocketHandler {
         let sendMessage = this.sendMessage;
         this.socket.onopen = () => sendMessage(
             "LobbyJoinRequest",
-            {
-                playerID: playerID,
-                lobbyID: lobbyID,
-            }
+            {playerID: playerID, lobbyID: lobbyID},
         );
 
         this.socket.addEventListener('message', event => {
             let message = event.data
-            this.listeners[message.type](message);
+            let listener = this.listeners[message.type]
+
             console.log('Message from server ', message);
+            if (listener == undefined) {
+                console.log("No listener for message type", message.type)
+            } else {
+                this.listeners[message.type](message);
+            }
         });
     }
 

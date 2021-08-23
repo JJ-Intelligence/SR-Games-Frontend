@@ -24,7 +24,7 @@ class Lobby extends React.Component {
         let lobby = this.state.lobby;
         console.log("Joining lobby", lobby);
 
-        this.websocket.setupSocket(lobby, this.state.playerID);
+        this.websocket.setupSocket(lobby, this.props.playerID);
         console.log("Websocket connection successful");
     }
 
