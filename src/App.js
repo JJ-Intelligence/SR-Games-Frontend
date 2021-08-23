@@ -11,14 +11,13 @@ import {createPlayerRequest} from "./Comms/Requests";
 
 export default class App extends React.Component {
     constructor(props) {
-        super(props);
-
-        createPlayerRequest(playerID => {
-          console.log("Player ", playerID)
-          this.setState({playerID})
-        });
-
-        this.state = { isHost: false, playerID: null };
+      super(props);
+      this.state = { isHost: false, playerID: null };
+      
+      createPlayerRequest(playerID => {
+        console.log("Player ", playerID)
+        this.setState({playerID})
+      });
     }
 
     render() {

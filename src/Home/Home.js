@@ -27,7 +27,7 @@ export default class Home extends React.Component {
                     <Button
                         style={{fontWeight: "bold", fontFamily: "Monda"}}
                         onClick={e => {
-                                createLobbyRequest(this.state.playerID, lobby => {
+                                createLobbyRequest(this.props.playerID, lobby => {
                                     this.props.setHost(true);
                                     this.setState({redirect: "/lobby/" + lobby})
                                 });
