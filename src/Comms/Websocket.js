@@ -15,12 +15,10 @@ export class WebsocketHandler {
             lobbyID: lobbyID,
         });
 
-        this.socket.addEventListener('message', function (event) {
-            event.json().then(message => {
-                    this.listeners[message.type](message);
-                    console.log('Message from server ', event.json);
-                }
-            )
+        this.socket.addEventListener('message', event => {
+            message = event.data
+            this.listeners[message.type](message);
+            console.log('Message from server ', message);
         });
     }
 
