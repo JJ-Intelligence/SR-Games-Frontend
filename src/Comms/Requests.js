@@ -8,7 +8,7 @@ export function createLobbyRequest(playerID, callback) {
         })
 }
 
-export function createPlayerReDquest(callback) {
+export function createPlayerRequest(callback) {
     console.log("Starting player request")
     fetch(
         "https://sr-games-backend.herokuapp.com/createPlayer")
