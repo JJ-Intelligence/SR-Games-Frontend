@@ -19,10 +19,10 @@ export class WebsocketHandler {
             let listener = this.listeners[message.type]
 
             console.log('Message from server ', message);
-            if (listener == undefined) {
-                console.log("No listener for message type", message.type)
-            } else {
+            if (listener) {
                 this.listeners[message.type](message);
+            } else {
+                console.log("No listener for message type", message.type)
             }
         });
     }
