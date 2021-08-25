@@ -15,7 +15,7 @@ export class WebsocketHandler {
         );
 
         this.socket.addEventListener('message', event => {
-            let message = event.data
+            let message = JSON.parse(event.data)
             let listener = this.listeners[message.type]
 
             console.log('Message from server ', message);
