@@ -1,7 +1,6 @@
 
 export class WebsocketHandler {
     constructor() {
-        this.sendMessage = this.sendMessage.bind(this);
         this.listeners = {};
     }
 
