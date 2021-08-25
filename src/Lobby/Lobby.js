@@ -20,14 +20,6 @@ class Lobby extends React.Component {
         return locs[locs.length-1]
     }
 
-    createLobby(){
-        let lobby = this.state.lobby;
-        console.log("Joining lobby", lobby);
-
-        this.websocket.setupSocket(lobby, this.props.playerID);
-        console.log("Websocket connection successful");
-    }
-
     joinLobby(){
         let lobby = this.state.lobby;
         console.log("Joining lobby", lobby);
@@ -37,11 +29,10 @@ class Lobby extends React.Component {
     }
 
     render() {
+        this.joinLobby()
         if (this.props.isHost) {
-            this.createLobby();
             return <HostLobby websocket={this.websocket}/>
         } else {
-            this.joinLobby()
             return <PlayerLobby websocket={this.websocket}/>
         }
     }
