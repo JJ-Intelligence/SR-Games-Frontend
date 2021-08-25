@@ -10,7 +10,9 @@ class Lobby extends React.Component {
     constructor(props) {
         super(props);
         this.state = { lobby: this.findLobbyID() };
+        console.log("Creating websocket")
         this.websocket = new WebsocketHandler();
+        console.log("Created websocket")
     }
 
     findLobbyID() {
