@@ -13,7 +13,7 @@ export class WebsocketHandler {
             "LobbyJoinRequest",
             {playerID: playerID, lobbyID: lobbyID},
         );
-        this.socket.onopen.onclose = function(event) {
+        this.socket.onclose = function(event) {
             if (event.code === 1000) {
                 console.log('WebSocket closed normally');
             } else {
@@ -38,10 +38,14 @@ export class WebsocketHandler {
     }
 
     sendMessage(type, contents) {
+        while (!this.socket.OPEN) {
+            console.log("Socket closed REEE")
+        }
         this.socket.send(JSON.stringify({
             type: type,
             contents: contents
         }))
+
     }
 
     addListener(type, callback) {
