@@ -30,7 +30,7 @@ export class WebsocketHandler {
 
             console.log('Message from server ', message);
             if (listener) {
-                this.listeners[message.type](message);
+                this.listeners[message.type](message.contents);
             } else {
                 console.log("No listener for message type", message.type)
             }

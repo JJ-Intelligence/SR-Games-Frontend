@@ -1,7 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import {Button, TextField} from "@material-ui/core";
-import {WebsocketHandler} from "../Comms/Websocket";
 import {createLobbyRequest} from "../Comms/Requests";
 
 
