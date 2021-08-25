@@ -13,6 +13,16 @@ export class WebsocketHandler {
             "LobbyJoinRequest",
             {playerID: playerID, lobbyID: lobbyID},
         );
+        this.socket.onopen.onclose = function(event) {
+            if (event.code === 1000) {
+                console.log('WebSocket closed normally');
+            } else {
+                console.log('WebSocket closed unexpectedly: ' + event.code);
+            }
+        }
+        this.socket.onerror = function (event) {
+            console.log(event.data);
+        };
 
         this.socket.addEventListener('message', event => {
             let message = JSON.parse(event.data)
