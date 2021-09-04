@@ -48,34 +48,35 @@ class Lobby extends React.Component {
     }
 
     render() {
-        const homeButton =
+        let gameButton;
+        switch (this.state.game) {
+            case null:
+                if (this.props.isHost) {
+                    gameButton = (<div>
+                        <HostLobby websocket={this.websocket}/>
+                    </div>)
+                } else {
+                    gameButton = (<div>
+                        <PlayerLobby websocket={this.websocket}/>
+                    </div>)
+                }
+                break;
+            case "tictactoe":
+                gameButton = <TicTacToe/>
+                break;
+            default:
+                gameButton = <div>Game not supported yet :(</div>
+
+        return <div>
             <Button
                 style={{fontWeight: "bold", fontFamily: "Monda"}}
                 onClick={e => {
                     this.props.history.push("/")
                 }}
-            >Home</Button>;
-
-        return <div>
-            {homeButton}
-            {() => {
-                switch (this.state.game) {
-                    case null:
-                        if (this.props.isHost) {
-                            return <div>
-                                <HostLobby websocket={this.websocket}/>
-                            </div>
-                        } else {
-                            return <div>
-                                <PlayerLobby websocket={this.websocket}/>
-                            </div>
-                        }
-                    case "tictactoe":
-                        return <TicTacToe></TicTacToe>
-                    default:
-                        return <div>Game not supported yet :(</div>
-            }
-            }}
+            >
+                Home
+            </Button>;
+            {gameButton}
         </div>
 
     }
