@@ -23,7 +23,7 @@ export default class PlayerLobby extends React.Component {
         return <div>
             <h2>Player Lobby</h2>
             <PlayerList websocket={this.websocket}/>
-            <Popup open={open} closeOnDocumentClick>
+            <Popup open={window.open} closeOnDocumentClick>
                 ref={this.popupRef}
                 <div className="modal">
                     The host left so the lobby has been closed
