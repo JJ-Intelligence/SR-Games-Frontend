@@ -37,7 +37,7 @@ class HomeWithoutRouter extends React.Component {
                         onClick={e => {
                                 createLobbyRequest(this.props.playerID, lobby => {
                                     this.props.setHost(true);
-                                    this.setState({redirect: "/lobby/" + lobby})
+                                    this.props.history.push("/lobby/" + lobby)
                                 });
                             }
                         }

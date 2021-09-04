@@ -3,6 +3,7 @@ import PlayerLobby from "./PlayerLobby";
 import React from "react";
 import {withRouter} from 'react-router-dom';
 import {WebsocketHandler} from "../Comms/Websocket";
+import {Button} from "@material-ui/core";
 
 export default withRouter(props => <Lobby {...props}/>);
 
@@ -34,10 +35,24 @@ class Lobby extends React.Component {
     }
 
     render() {
+        const homeButton =
+            <Button
+                style={{fontWeight: "bold", fontFamily: "Monda"}}
+                onClick={e => {
+                    this.props.history.push("/")
+                }}
+            />;
+
         if (this.props.isHost) {
-            return <HostLobby websocket={this.websocket}/>
+            return <div>
+                {homeButton}
+                <HostLobby websocket={this.websocket}/>
+            </div>
         } else {
-            return <PlayerLobby websocket={this.websocket}/>
+            return <div>
+                {homeButton}
+                <PlayerLobby websocket={this.websocket}/>
+            </div>
         }
     }
 }
