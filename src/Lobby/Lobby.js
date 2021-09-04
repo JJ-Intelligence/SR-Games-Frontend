@@ -66,6 +66,7 @@ class Lobby extends React.Component {
                 break;
             default:
                 gameButton = <div>Game not supported yet :(</div>
+        }
 
         return <div>
             <Button
