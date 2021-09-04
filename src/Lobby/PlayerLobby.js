@@ -8,6 +8,8 @@ export default class PlayerLobby extends React.Component {
     constructor(props) {
         super(props);
         this.websocket = props.websocket;
+
+        this.popupRef = React.createRef();
     }
 
     componentDidMount() {
@@ -17,8 +19,6 @@ export default class PlayerLobby extends React.Component {
     }
 
     render() {
-
-        this.popupRef = useRef();
 
         return <div>
             <h2>Player Lobby</h2>
@@ -30,7 +30,6 @@ export default class PlayerLobby extends React.Component {
                     Press OK to return to the main menu.
                     <button
                         onClick={() => {
-                            close();
                             this.props.history.push("/")
                         }}
                     >OK</button>
