@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import {Button, TextField} from "@material-ui/core";
 import {createLobbyRequest} from "../Comms/Requests";
-import {withRouter} from "react-router";
+import {withRouter} from "react-router-dom";
 import PropTypes from "prop-types";
 
 
