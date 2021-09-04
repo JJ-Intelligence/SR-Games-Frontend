@@ -1,17 +1,19 @@
 import React from "react";
 import {Redirect} from "react-router-dom";
 
-class Home extends React.Component {
+// Handles and displays the list of players currently in the lobby
+class PlayerList extends React.Component {
     constructor(props) {
         super(props);
         this.websocket = props.websocket;
         this.state = { players: [] };
 
-        this.websocket.addListener("LobbyPlayerListBroadcast", e => {
-            this.updatePlayers(e.playerIDs)
+        this.websocket.addListener("LobbyPlayerListBroadcast", contents => {
+            this.updatePlayers(contents.playerIDs)
         })
     }
 
+    // Update the list of players
     updatePlayers(players) {
         this.setState({players})
     }
@@ -20,13 +22,14 @@ class Home extends React.Component {
         if (this.state.redirect) {
             return <Redirect to={this.state.redirect} />
         }
+
         return (
             <div>
-                {[...this.state.players].map((user, userIndex) => (
-                    <div>Player {{user}}</div>
+                {this.state.players.map((user, i) => (
+                    <div key={i}>Player {{user}}</div>
                 ))}
             </div>
         );
     }
 }
-export default Home;
+export default PlayerList;

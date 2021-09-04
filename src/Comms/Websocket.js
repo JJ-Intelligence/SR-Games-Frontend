@@ -34,9 +34,9 @@ export class WebsocketHandler {
             let message = JSON.parse(event.data)
             let listener = this.listeners[message.type]
 
-            console.log('Message from server ', message);
+            console.log('Message from server ', message)
             if (listener) {
-                listener(message.contents);
+                listener(message.contents)
             } else {
                 console.log("No listener for message type", message.type)
             }
