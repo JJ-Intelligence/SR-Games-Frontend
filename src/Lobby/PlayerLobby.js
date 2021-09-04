@@ -2,6 +2,7 @@ import PlayerList from "./PlayerList";
 import React from "react";
 
 
+// Lobby page for regular players
 export default class PlayerLobby extends React.Component {
     constructor(props) {
         super(props);

@@ -3,6 +3,7 @@ import {Button} from "@material-ui/core";
 import React from "react";
 
 
+// Lobby page for the host
 export default class HostLobby extends React.Component {
     constructor(props) {
         super(props);

@@ -13,7 +13,10 @@ export default class App extends React.Component {
     constructor(props) {
       super(props);
       this.state = { isHost: false, playerID: null };
-      
+    }
+
+    componentDidMount() {
+      // Create a new player
       createPlayerRequest(playerID => {
         console.log("Player ", playerID)
         this.setState({playerID})

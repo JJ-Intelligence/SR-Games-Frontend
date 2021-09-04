@@ -8,30 +8,32 @@ export default withRouter(props => <Lobby {...props}/>);
 
 class Lobby extends React.Component {
     constructor(props) {
-        super(props);
-        this.state = { lobby: this.findLobbyID() };
-        console.log("Creating websocket")
-        this.websocket = new WebsocketHandler();
-        console.log("Created websocket")
+        super(props)
+        this.state = { lobby: this.findLobbyID() }
+        this.websocket = new WebsocketHandler()
     }
 
+    // Extra the Lobby ID from the URL's path
     findLobbyID() {
-        const location = this.props.location.pathname;
+        const location = this.props.location.pathname
         console.log(location)
-        const locs = location.split("/");
+        const locs = location.split("/")
         return locs[locs.length-1]
     }
 
-    joinLobby(){
-        let lobby = this.state.lobby;
-        console.log("Joining lobby", lobby);
+    componentDidMount() {
+        // Send a request for the player to join the lobby
+        console.log("Joining lobby", this.state.lobby)
+        this.websocket.setupSocket(this.state.lobby, this.props.playerID)
+        console.log("Joined lobby")
+    }
 
-        this.websocket.setupSocket(lobby, this.props.playerID);
-        console.log("Websocket connection successful");
+    componentWillUnmount() {
+        // Close the websocket connection once the player leaves the lobby
+        this.websocket.close()
     }
 
     render() {
-        this.joinLobby()
         if (this.props.isHost) {
             return <HostLobby websocket={this.websocket}/>
         } else {
