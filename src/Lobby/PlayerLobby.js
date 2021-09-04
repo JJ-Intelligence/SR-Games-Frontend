@@ -2,7 +2,7 @@ import PlayerList from "./PlayerList";
 import React, {useRef} from "react";
 import Popup from "reactjs-popup";
 import {withRouter} from "react-router-dom";
-import "./PlayerLobby.css";
+import "./Lobby.css";
 
 
 // Lobby page for regular players

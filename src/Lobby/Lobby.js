@@ -4,14 +4,18 @@ import React from "react";
 import {withRouter} from 'react-router-dom';
 import {WebsocketHandler} from "../Comms/Websocket";
 import {Button} from "@material-ui/core";
+import TicTacToe from "../Games/TicTacToe/TicTacToe";
 
 export default withRouter(props => <Lobby {...props}/>);
 
 class Lobby extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { lobby: this.findLobbyID() }
-        this.websocket = new WebsocketHandler()
+        this.state = {
+            lobby: this.findLobbyID(),
+            game: null
+        }
+        this.websocket = new WebsocketHandler();
     }
 
     // Extra the Lobby ID from the URL's path
@@ -25,10 +29,16 @@ class Lobby extends React.Component {
     componentDidMount() {
         // Send a request for the player to join the lobby
         console.log("Joining lobby", this.state.lobby)
+
         this.websocket.addListener("LobbyDoesNotExistResponse", () => {
             this.props.history.push("/invalid-lobby/" + this.state.lobby);
-        })
-        this.websocket.setupSocket(this.state.lobby, this.props.playerID)
+        });
+
+        this.websocket.addListener("LobbyStartGameBroadcast", content => {
+            this.setState({"game": content.game})
+        });
+
+        this.websocket.setupSocket(this.state.lobby, this.props.playerID);
         console.log("Joined lobby")
     }
 
@@ -46,16 +56,27 @@ class Lobby extends React.Component {
                 }}
             >Home</Button>;
 
-        if (this.props.isHost) {
-            return <div>
-                {homeButton}
-                <HostLobby websocket={this.websocket}/>
-            </div>
-        } else {
-            return <div>
-                {homeButton}
-                <PlayerLobby websocket={this.websocket}/>
-            </div>
-        }
+        return <div>
+            {homeButton}
+            {() => {
+                switch (this.state.game) {
+                    case null:
+                        if (this.props.isHost) {
+                            return <div>
+                                <HostLobby websocket={this.websocket}/>
+                            </div>
+                        } else {
+                            return <div>
+                                <PlayerLobby websocket={this.websocket}/>
+                            </div>
+                        }
+                    case "tictactoe":
+                        return <TicTacToe></TicTacToe>
+                    default:
+                        return <div>Game not supported yet :(</div>
+            }
+            }}
+        </div>
+
     }
 }
