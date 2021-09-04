@@ -6,8 +6,6 @@ import {withRouter} from "react-router";
 import PropTypes from "prop-types";
 
 
-const Home = withRouter(HomeWithoutRouter);
-export default Home;
 
 class HomeWithoutRouter extends React.Component {
     static propTypes = {
@@ -65,5 +63,8 @@ class HomeWithoutRouter extends React.Component {
         );
     }
 }
+
+const Home = withRouter(HomeWithoutRouter);
+export default Home;
 
 
