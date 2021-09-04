@@ -15,7 +15,7 @@ class PlayerList extends React.Component {
 
     // Update the list of players
     updatePlayers(players) {
-        this.setState({players: [...players]})
+        this.setState({players})
     }
 
     render() {
@@ -26,7 +26,7 @@ class PlayerList extends React.Component {
         return (
             <div>
                 {this.state.players.map((user, i) => (
-                    <div key={i}>Player {{user}}</div>
+                    <div key={i}>Player {user}</div>
                 ))}
             </div>
         );
