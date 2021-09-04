@@ -15,7 +15,7 @@ class PlayerList extends React.Component {
 
     // Update the list of players
     updatePlayers(players) {
-        this.setState({players})
+        this.setState({players: [...players]})
     }
 
     render() {
