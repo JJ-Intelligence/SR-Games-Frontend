@@ -1,10 +1,12 @@
 import PlayerList from "./PlayerList";
 import React, {useRef} from "react";
 import Popup from "reactjs-popup";
+import {withRouter} from "react-router-dom";
 
 
 // Lobby page for regular players
-export default class PlayerLobby extends React.Component {
+export default withRouter(props => <Lobby {...props}/>);
+class Lobby extends React.Component {
     constructor(props) {
         super(props);
         this.websocket = props.websocket;
@@ -23,7 +25,7 @@ export default class PlayerLobby extends React.Component {
         return <div>
             <h2>Player Lobby</h2>
             <PlayerList websocket={this.websocket}/>
-            <Popup open={this.popupRef.current.open()} closeOnDocumentClick>
+            <Popup closeOnDocumentClick>
                 ref={this.popupRef}
                 <div className="modal">
                     The host left so the lobby has been closed
