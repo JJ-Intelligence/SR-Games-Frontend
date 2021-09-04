@@ -7,6 +7,7 @@ import {
 import Home from "./Home/Home";
 import Lobby from "./Lobby/Lobby";
 import {createPlayerRequest} from "./Comms/Requests";
+import LobbyDoesntExist from "./Lobby/LobbyDoesntExist";
 
 
 
@@ -30,6 +31,9 @@ export default class App extends React.Component {
                 <Router>
                     <div>
                         <Switch>
+                            <Route path="/invalid-lobby/*">
+                                <LobbyDoesntExist />
+                            </Route>
                             <Route path="/lobby/*">
                                 <Lobby
                                     isHost={this.state.isHost}
