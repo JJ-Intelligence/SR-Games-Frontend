@@ -2,6 +2,7 @@ import PlayerList from "./PlayerList";
 import React, {useRef} from "react";
 import Popup from "reactjs-popup";
 import {withRouter} from "react-router-dom";
+import "./PlayerLobby.css";
 
 
 // Lobby page for regular players
@@ -25,7 +26,12 @@ class Lobby extends React.Component {
         return <div>
             <h2>Player Lobby</h2>
             <PlayerList websocket={this.websocket}/>
-            <Popup open={false} ref={this.popupRef} closeOnDocumentClick>
+            <Popup
+                ref={this.popupRef}
+                closeOnDocumentClick={false}
+                closeOnEscape={false}
+                modal
+            >
 
                 <div className="modal">
                     The host left so the lobby has been closed
