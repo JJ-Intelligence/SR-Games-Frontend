@@ -24,27 +24,31 @@ export default class App extends React.Component {
     }
 
     render() {
-      return (
-          <Router>
-            <div>
-              <Switch>
-                <Route path="/lobby/*">
-                  <Lobby
-                      isHost={this.state.isHost}
-                      playerID={this.state.playerID}
-                  />
-                </Route>
-                <Route path="/">
-                  <Home
-                      setHost={isHost => {
-                        this.setState({isHost})
-                      }}
-                      playerID={this.state.playerID}
-                  />
-                </Route>
-              </Switch>
-            </div>
-          </Router>
-      );
+        if (this.state.playerID !== null) {
+            return (
+                <Router>
+                    <div>
+                        <Switch>
+                            <Route path="/lobby/*">
+                                <Lobby
+                                    isHost={this.state.isHost}
+                                    playerID={this.state.playerID}
+                                />
+                            </Route>
+                            <Route path="/">
+                                <Home
+                                    setHost={isHost => {
+                                        this.setState({isHost})
+                                    }}
+                                    playerID={this.state.playerID}
+                                />
+                            </Route>
+                        </Switch>
+                    </div>
+                </Router>
+            );
+        } else {
+            return <div>Loading...</div>
+        }
     }
 }
