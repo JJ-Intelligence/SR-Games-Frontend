@@ -25,8 +25,8 @@ class Lobby extends React.Component {
         return <div>
             <h2>Player Lobby</h2>
             <PlayerList websocket={this.websocket}/>
-            <Popup closeOnDocumentClick>
-                ref={this.popupRef}
+            <Popup open={false} ref={this.popupRef} closeOnDocumentClick>
+
                 <div className="modal">
                     The host left so the lobby has been closed
                     Press OK to return to the main menu.
