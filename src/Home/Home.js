@@ -2,9 +2,20 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import {Button, TextField} from "@material-ui/core";
 import {createLobbyRequest} from "../Comms/Requests";
+import {withRouter} from "react-router";
+import PropTypes from "prop-types";
 
 
-export default class Home extends React.Component {
+const Home = withRouter(HomeWithoutRouter);
+export default Home;
+
+class HomeWithoutRouter extends React.Component {
+    static propTypes = {
+        match: PropTypes.object.isRequired,
+        location: PropTypes.object.isRequired,
+        history: PropTypes.object.isRequired
+    };
+
     constructor(props) {
         super(props);
         this.state = { redirect: null, lobby: null };
@@ -43,7 +54,7 @@ export default class Home extends React.Component {
                         style={{fontWeight: "bold", fontFamily: "Monda"}}
                         onClick={e => {
                                 this.props.setHost(false);
-                                this.setState({redirect: "/lobby/" + this.state.lobby})
+                                this.props.history.push("/lobby/" + this.state.lobby)
                             }
                         }
                     >
