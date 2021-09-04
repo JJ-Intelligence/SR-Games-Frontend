@@ -6,7 +6,7 @@ export class WebsocketHandler {
 
     setupSocket(lobbyID, playerID) {
         console.log("Setting up websocket")
-        this.socket = new WebSocket('wss://sr-games-backend.herokuapp.com/');
+        this.socket = new WebSocket('ws://sr-games-backend.herokuapp.com/');
         this.socket.onmessage = event => {console.log(event.data)}
         let sendMessage = this.sendMessage;
         this.socket.onopen = () => sendMessage(
