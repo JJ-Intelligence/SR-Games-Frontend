@@ -3,10 +3,12 @@ import {Button} from "@material-ui/core";
 import React from "react";
 import Popup from "reactjs-popup";
 import "./Lobby.css";
+import {withRouter} from "react-router-dom";
 
 
 // Lobby page for the host
-export default class HostLobby extends React.Component {
+export default withRouter(props => <HostLobby {...props}/>);
+class HostLobby extends React.Component {
     constructor(props) {
         super(props);
         this.websocket = props.websocket;
@@ -37,6 +39,7 @@ export default class HostLobby extends React.Component {
 
             <Popup
                 ref={this.popupRef}
+                defaultOpen={false}
                 closeOnDocumentClick={false}
                 closeOnEscape={false}
                 modal
