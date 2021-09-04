@@ -14,7 +14,11 @@ export default class HostLobby extends React.Component {
         return <div>
             <h2>Host Lobby</h2>
             <PlayerList websocket={this.websocket}/>
-            <Button>Start Game</Button>
+            <Button
+                onClick={e => {
+                    this.props.history.push("/")
+                }}
+            >Start Game</Button>
         </div>
     }
 }

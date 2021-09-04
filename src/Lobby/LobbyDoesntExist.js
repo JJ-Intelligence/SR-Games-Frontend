@@ -26,7 +26,7 @@ class LobbyDoesntExist extends React.Component {
                 onClick={e => {
                     this.props.history.push("/")
                 }}
-            >Return to Home</Button>;
+            >Return to Home</Button>
         </div>
     }
 }

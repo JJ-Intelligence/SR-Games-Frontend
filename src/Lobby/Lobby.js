@@ -25,9 +25,6 @@ class Lobby extends React.Component {
     componentDidMount() {
         // Send a request for the player to join the lobby
         console.log("Joining lobby", this.state.lobby)
-        this.websocket.addListener("LobbyClosedBroadcast", () => {
-            this.props.history.push("/invalid-lobby/" + this.state.lobby);
-        })
         this.websocket.addListener("LobbyDoesNotExistResponse", () => {
             this.props.history.push("/invalid-lobby/" + this.state.lobby);
         })
